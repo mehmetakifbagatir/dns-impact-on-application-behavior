@@ -1,0 +1,5 @@
+timestamp,domain,success,duration_ms,error
+2026-01-28T14:31:04,google.com,True,28.65,
+2026-01-28T14:31:04,github.com,True,18.33,
+2026-01-28T14:31:04,example.com,True,17.49,
+2026-01-28T14:31:04,nonexistentdomainforschoolproject123.com,False,22.3,[Errno 11001] getaddrinfo failed
