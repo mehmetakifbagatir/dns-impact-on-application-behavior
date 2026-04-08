@@ -1,0 +1,106 @@
+{
+  "theme": "dark",
+  "archetype": "Archetype 4 (Swiss & High-Contrast) + Terminal Retro-Futurism",
+  "rationale": "For an experimental network analysis system handling massive concurrency, the UI must feel like a high-end command center. Avoiding generic SaaS dashboards, we use a 'Control Room' dense grid, void black backgrounds, and Electric Cyan accents (avoiding forbidden teal #1B93A4) for extreme data clarity and a technical aesthetic.",
+  "colors": {
+    "background": "#050505",
+    "surface": "#0D0D12",
+    "surface_hover": "#16161D",
+    "border": "rgba(6, 182, 212, 0.15)",
+    "text_primary": "#FAFAFA",
+    "text_secondary": "#A1A1AA",
+    "primary_accent": "#00E5FF",
+    "secondary_accent": "#EAB308",
+    "success": "#22C55E",
+    "destructive": "#EF4444"
+  },
+  "typography": {
+    "headings": {
+      "family": "IBM Plex Mono, monospace",
+      "weight": "font-bold",
+      "tracking": "tracking-tight",
+      "usage": "H1/H2 for panel titles and primary metrics"
+    },
+    "body": {
+      "family": "IBM Plex Sans, sans-serif",
+      "weight": "font-normal",
+      "tracking": "tracking-normal",
+      "usage": "Data tables, paragraphs, and chart labels"
+    },
+    "labels": {
+      "family": "IBM Plex Mono, monospace",
+      "weight": "font-medium",
+      "tracking": "tracking-[0.2em]",
+      "transform": "uppercase",
+      "size": "text-xs",
+      "usage": "Overlines, table headers, tiny metrics"
+    }
+  },
+  "layout_and_spacing": {
+    "grid_system": "Mode B: The 'Control Room' Grid",
+    "gap": "gap-4 md:gap-6",
+    "padding": "p-6 for panels",
+    "border_radius": "rounded-none",
+    "alignment": "Strict left-alignment for all data and labels. Top-right for secondary panel actions.",
+    "container_classes": "border-collapse border border-cyan-500/20 bg-[#0D0D12]"
+  },
+  "surface_strategy": {
+    "style": "Retro-Futurism & Grid Borders",
+    "shadows": "None. Flat surfaces with sharp 1px borders.",
+    "glow": "Subtle text-shadow or drop-shadow on active metric numbers (e.g., drop-shadow-[0_0_8px_rgba(0,229,255,0.3)])",
+    "glassmorphism": "Not recommended. Use solid dark backgrounds to prevent visual refraction of dense data."
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-[#00E5FF] text-black font-bold uppercase tracking-wider rounded-none hover:bg-[#66FAFF] transition-colors border border-[#00E5FF]",
+      "secondary": "bg-transparent text-[#00E5FF] border border-[#00E5FF]/50 rounded-none hover:bg-[#00E5FF]/10",
+      "destructive": "bg-transparent text-[#EF4444] border border-[#EF4444]/50 rounded-none hover:bg-[#EF4444]/10"
+    },
+    "cards": {
+      "structure": "Raw div or heavily stripped Shadcn Card. bg-[#0D0D12] border border-cyan-500/20 rounded-none p-6"
+    },
+    "charts": {
+      "library": "recharts",
+      "lines": "1.5px to 2px solid strokes. No generic gradient fills. Use '#00E5FF' for primary metric, '#EAB308' for secondary.",
+      "grid": "Subtle horizontal-only grid lines ('#27272A').",
+      "tooltip": "Black background, sharp cyan border, monospace text."
+    },
+    "tables": {
+      "header": "Uppercase monospace, tracking-[0.2em], text-xs, text-zinc-400, border-b border-cyan-500/20 pb-2",
+      "rows": "text-sm IBM Plex Sans, border-b border-white/5 hover:bg-white/5 transition-colors"
+    },
+    "form_controls": {
+      "sliders": "Neon cyan track, square thumb.",
+      "toggles": "Square or very slightly rounded edges, bright cyan when active."
+    }
+  },
+  "animations": {
+    "hover": "Explicit hover states (e.g., hover:bg-[#16161D] hover:text-white)",
+    "transitions": "transition-all duration-200 ease-in-out",
+    "data_update": "Framer motion pulse or background flash on new TCP connection in table."
+  },
+  "icons": {
+    "library": "@phosphor-icons/react",
+    "installation": "yarn add @phosphor-icons/react",
+    "style": "Regular or Duotone weight, highly legible for dense dashboards."
+  },
+  "media": {
+    "image_urls": [],
+    "notes": "CRITICAL: Do NOT use any placeholder images (e.g., via.placeholder.com). This is a purely technical UI driven by data, lines, and charts. If an icon is needed, use Phosphor icons. No actual images are required for this app."
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure pure cyan/yellow pass APCA against #050505.",
+    "testing": "All interactive elements MUST have `data-testid` in kebab-case (e.g., `data-testid=\"start-scenario-button\"`, `data-testid=\"export-csv-button\"`)"
+  },
+  "specific_page_instructions": {
+    "dashboard_layout": {
+      "header": "Sticky top bar, z-50, border-b border-cyan-500/20 bg-[#050505]. Contains Logo/Brand and global status indicator.",
+      "metrics_row": "Top row: 4-5 dense metric cards (Active Conn, Total Conn, Msg/Sec, Conn Rate, Avg Duration). Large IBM Plex Mono numbers.",
+      "control_panel": "Sidebar or top-left panel. Dense sliders and toggles for Client Load Gen (1-100 clients, rates, burst, etc.) and 'Run All Scenarios' (5, 20, 50, 100).",
+      "main_charts": "Center area. Large Recharts visualizing active connections and messages/sec over time.",
+      "data_tables": "Bottom area or tabs. Active Connections history and Scenario Comparison Table.",
+      "port_analysis": "Dedicated section/widget for tracking unique source ports, showing distribution and most frequent ports via Recharts bar chart or dense list.",
+      "automatic_analysis": "A 'Terminal' styled block on the right/bottom: `bg-black border-l-2 border-[#00E5FF] p-4 font-mono text-sm text-zinc-300` displaying dynamic text insights."
+    }
+  }
+}
