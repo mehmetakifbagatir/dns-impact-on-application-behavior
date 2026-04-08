@@ -1,115 +1,250 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --bg-void: #050505;
+  --bg-surface: #0D0D12;
+  --bg-surface-hover: #16161D;
+  --border-cyan: rgba(0, 229, 255, 0.15);
+  --text-primary: #FAFAFA;
+  --text-secondary: #A1A1AA;
+  --accent-cyan: #00E5FF;
+  --accent-yellow: #EAB308;
+  --success: #22C55E;
+  --destructive: #EF4444;
+}
+
 body {
-    margin: 0;
-    font-family:
-        -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-void);
+  color: var(--text-primary);
 }
 
-code {
-    font-family:
-        source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+code, .font-mono {
+  font-family: 'IBM Plex Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 229, 255, 0.3);
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.5);
+}
+
+/* Metric glow effect */
+.metric-glow {
+  text-shadow: 0 0 8px rgba(0, 229, 255, 0.3);
+}
+
+/* Panel styles */
+.panel {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-cyan);
+}
+
+/* Table styles */
+.data-table th {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-cyan);
+  padding-bottom: 0.5rem;
+}
+
+.data-table td {
+  font-size: 0.875rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.75rem 0;
+}
+
+.data-table tr:hover td {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Slider styling */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-track {
+  background: rgba(0, 229, 255, 0.2);
+  height: 4px;
+  border-radius: 0;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--accent-cyan);
+  border-radius: 0;
+  margin-top: -6px;
+}
+
+input[type="range"]::-moz-range-track {
+  background: rgba(0, 229, 255, 0.2);
+  height: 4px;
+  border-radius: 0;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--accent-cyan);
+  border: none;
+  border-radius: 0;
+}
+
+/* Terminal block */
+.terminal-block {
+  background: #000;
+  border-left: 2px solid var(--accent-cyan);
+  padding: 1rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+}
+
+/* Button styles */
+.btn-primary {
+  background-color: var(--accent-cyan);
+  color: black;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border: 1px solid var(--accent-cyan);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+  background-color: #66FAFF;
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--accent-cyan);
+  border: 1px solid rgba(0, 229, 255, 0.5);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-secondary:hover {
+  background-color: rgba(0, 229, 255, 0.1);
+}
+
+.btn-destructive {
+  background-color: transparent;
+  color: var(--destructive);
+  border: 1px solid rgba(239, 68, 68, 0.5);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-destructive:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Status indicators */
+.status-active {
+  color: var(--success);
+}
+
+.status-closed {
+  color: var(--text-secondary);
+}
+
+/* Animation for new data */
+@keyframes pulse-cyan {
+  0%, 100% {
+    background-color: var(--bg-surface);
+  }
+  50% {
+    background-color: rgba(0, 229, 255, 0.1);
+  }
+}
+
+.animate-pulse-cyan {
+  animation: pulse-cyan 0.5s ease-in-out;
+}
+
+/* Recharts custom tooltip */
+.custom-tooltip {
+  background: #000 !important;
+  border: 1px solid var(--accent-cyan) !important;
+  padding: 0.5rem 0.75rem !important;
+  font-family: 'IBM Plex Mono', monospace !important;
+  font-size: 0.75rem !important;
 }
 
 @layer base {
-    :root {
-        --background: 0 0% 100%;
-        --foreground: 0 0% 3.9%;
-        --card: 0 0% 100%;
-        --card-foreground: 0 0% 3.9%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 0 0% 3.9%;
-        --primary: 0 0% 9%;
-        --primary-foreground: 0 0% 98%;
-        --secondary: 0 0% 96.1%;
-        --secondary-foreground: 0 0% 9%;
-        --muted: 0 0% 96.1%;
-        --muted-foreground: 0 0% 45.1%;
-        --accent: 0 0% 96.1%;
-        --accent-foreground: 0 0% 9%;
-        --destructive: 0 84.2% 60.2%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 89.8%;
-        --input: 0 0% 89.8%;
-        --ring: 0 0% 3.9%;
-        --chart-1: 12 76% 61%;
-        --chart-2: 173 58% 39%;
-        --chart-3: 197 37% 24%;
-        --chart-4: 43 74% 66%;
-        --chart-5: 27 87% 67%;
-        --radius: 0.5rem;
-    }
-    .dark {
-        --background: 0 0% 3.9%;
-        --foreground: 0 0% 98%;
-        --card: 0 0% 3.9%;
-        --card-foreground: 0 0% 98%;
-        --popover: 0 0% 3.9%;
-        --popover-foreground: 0 0% 98%;
-        --primary: 0 0% 98%;
-        --primary-foreground: 0 0% 9%;
-        --secondary: 0 0% 14.9%;
-        --secondary-foreground: 0 0% 98%;
-        --muted: 0 0% 14.9%;
-        --muted-foreground: 0 0% 63.9%;
-        --accent: 0 0% 14.9%;
-        --accent-foreground: 0 0% 98%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 0 0% 98%;
-        --border: 0 0% 14.9%;
-        --input: 0 0% 14.9%;
-        --ring: 0 0% 83.1%;
-        --chart-1: 220 70% 50%;
-        --chart-2: 160 60% 45%;
-        --chart-3: 30 80% 55%;
-        --chart-4: 280 65% 60%;
-        --chart-5: 340 75% 55%;
-    }
+  :root {
+    --background: 0 0% 2%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 5%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 187 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 187 100% 50%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 187 100% 50% / 0.15;
+    --input: 0 0% 14.9%;
+    --ring: 187 100% 50%;
+    --chart-1: 187 100% 50%;
+    --chart-2: 48 96% 53%;
+    --chart-3: 142 71% 45%;
+    --chart-4: 0 84% 60%;
+    --chart-5: 270 60% 50%;
+    --radius: 0rem;
+  }
 }
 
 @layer base {
-    * {
-        @apply border-border;
-    }
-    body {
-        @apply bg-background text-foreground;
-    }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }
 
 @layer base {
-    [data-debug-wrapper="true"] {
-        display: contents !important;
-    }
-
-    [data-debug-wrapper="true"] > * {
-        margin-left: inherit;
-        margin-right: inherit;
-        margin-top: inherit;
-        margin-bottom: inherit;
-        padding-left: inherit;
-        padding-right: inherit;
-        padding-top: inherit;
-        padding-bottom: inherit;
-        column-gap: inherit;
-        row-gap: inherit;
-        gap: inherit;
-        border-left-width: inherit;
-        border-right-width: inherit;
-        border-top-width: inherit;
-        border-bottom-width: inherit;
-        border-left-style: inherit;
-        border-right-style: inherit;
-        border-top-style: inherit;
-        border-bottom-style: inherit;
-        border-left-color: inherit;
-        border-right-color: inherit;
-        border-top-color: inherit;
-        border-bottom-color: inherit;
-    }
+  [data-debug-wrapper="true"] {
+    display: contents !important;
+  }
 }
